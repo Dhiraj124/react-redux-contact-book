@@ -5,45 +5,40 @@ import {
   DELETE_CONTACT,
   SELECT_CONTACT,
   CLEAR_CONTACT,
-  DELETE_SELECTED_CONTACT,
-} from "../constant/types";
+  DELETE_SELECTED_CONTACTS,
+} from "../constants/type";
 
-// actions
 export const addContact = (contact) => ({
   type: CREATE_CONTACT,
   payload: contact,
 });
 
-// get a contact
 export const getContact = (id) => ({
   type: GET_CONTACT,
   payload: id,
 });
 
-// update a contact
 export const updateContact = (contact) => ({
   type: UPDATE_CONTACT,
   payload: contact,
 });
 
-// delete a contact
 export const deleteContact = (id) => ({
   type: DELETE_CONTACT,
   payload: id,
 });
 
-// select all contact
 export const selectAllContact = (id) => ({
   type: SELECT_CONTACT,
   payload: id,
 });
 
-// clear selected contacts
-export const clearAllContact = () => ({
+export const clearAllContacts = () => ({
   type: CLEAR_CONTACT,
 });
 
-// delete selected contacts
-export const deleteAllContact = () => ({
-  type: DELETE_SELECTED_CONTACT,
-});
+export const  deleteAllContact= () => ({
+  type: DELETE_SELECTED_CONTACTS,
+ 
+})
+

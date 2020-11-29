@@ -5,10 +5,10 @@ import {
   DELETE_CONTACT,
   SELECT_CONTACT,
   CLEAR_CONTACT,
-  DELETE_SELECTED_CONTACT,
-} from "../constant/types";
+  DELETE_SELECTED_CONTACTS
+} from "../constants/type";
 
-const intialState = {
+const initialState = {
   contacts: [
     {
       id: 1,
@@ -241,36 +241,43 @@ const intialState = {
       },
     },
   ],
+
   contact: null,
   selectedContacts: [],
 };
 
-export const contactReducer = (state = intialState, action) => {
+export const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CONTACT:
       return {
         ...state,
         contacts: [action.payload, ...state.contacts],
       };
+
     case GET_CONTACT:
       let arr = state.contacts.filter(
         (contact) => contact.id == action.payload
       );
+      console.log(arr);
       arr = arr.values();
+      console.log(arr);
       for (let val of arr) {
         arr = val;
+        console.log(arr);
       }
       return {
         ...state,
         contact: arr,
       };
+
     case UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map((contact) =>
-          contact.id == action.payload.id ? action.payload : contact
+          contact.id === action.payload.id ? action.payload : contact
         ),
       };
+
     case DELETE_CONTACT:
       return {
         ...state,
@@ -278,22 +285,24 @@ export const contactReducer = (state = intialState, action) => {
           (contact) => contact.id != action.payload
         ),
       };
-    case DELETE_SELECTED_CONTACT:
-      return {
-        ...state,
-        contacts: [],
-      };
     case SELECT_CONTACT:
       return {
         ...state,
         selectedContacts: action.payload,
       };
-
     case CLEAR_CONTACT:
       return {
         ...state,
         selectedContacts: [],
       };
+    
+    case DELETE_SELECTED_CONTACTS: 
+    return{
+      ...state,
+      contacts: [],
+      selectedContacts: []
+    }
+    
     default:
       return state;
   }
